@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific
+venv/
+data/raw/
+data/processed/
+
+# Trained model artifacts (metrics .json files are kept, see CLAUDE.md)
+src/models/artifacts/*
+!src/models/artifacts/.gitkeep
+!src/models/artifacts/*.json
+*.joblib
+*.pkl
+
+# Credentials (defensive -- kaggle.json normally lives outside the repo in
+# ~/.kaggle/, but ignore it here too in case a setup places it in-tree)
+kaggle.json

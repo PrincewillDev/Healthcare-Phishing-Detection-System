@@ -1,0 +1,17 @@
+pandas
+scikit-learn
+xgboost
+lightgbm
+nltk
+beautifulsoup4
+tldextract
+fastapi
+uvicorn
+python-multipart
+shap
+joblib
+pytest
+requests
+huggingface_hub
+pyarrow
+kagglehub
