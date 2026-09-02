@@ -181,7 +181,7 @@ def load_healthcare_kaggle() -> pd.DataFrame:
 
 
 def load_synthetic_healthcare() -> pd.DataFrame:
-    batch_paths = sorted(glob.glob(str(SYNTHETIC_DIR / "healthcare_synthetic_batch*.csv")))
+    batch_paths = sorted(glob.glob(str(SYNTHETIC_DIR / "healthcare_synthetic_*.csv")))
     frames = []
     for path in batch_paths:
         df = pd.read_csv(path)
