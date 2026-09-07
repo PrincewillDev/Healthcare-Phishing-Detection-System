@@ -1,0 +1,326 @@
+{
+  "model": "RandomForestClassifier",
+  "phase": "4",
+  "step": "1",
+  "created_utc": "2026-09-03T22:13:20.515266+00:00",
+  "positive_class": "phishing",
+  "params": {
+    "n_estimators": 200,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "class_weight_note": "left at default (None); train split is already 50/50 phishing/legit from upstream sampling, so class_weight='balanced' would be a no-op",
+  "data": {
+    "train_rows": 10500,
+    "val_rows": 2250,
+    "n_features": 5012,
+    "tfidf_features": 5000,
+    "dense_features": 12,
+    "test_set_touched": false
+  },
+  "validation_overall": {
+    "n": 2250,
+    "n_phishing": 1125,
+    "n_legitimate": 1125,
+    "precision": 0.9641294838145232,
+    "recall": 0.9795555555555555,
+    "f1": 0.9717813051146384,
+    "false_positive_rate": 0.036444444444444446,
+    "auc_roc": 0.9940258765432098,
+    "accuracy": 0.9715555555555555,
+    "confusion_matrix": {
+      "labels": [
+        "legitimate",
+        "phishing"
+      ],
+      "matrix": [
+        [
+          1084,
+          41
+        ],
+        [
+          23,
+          1102
+        ]
+      ],
+      "tn": 1084,
+      "fp": 41,
+      "fn": 23,
+      "tp": 1102
+    },
+    "notes": []
+  },
+  "validation_by_source_dataset": {
+    "kaggle_chakraborty": {
+      "n": 1650,
+      "n_phishing": 825,
+      "n_legitimate": 825,
+      "precision": 0.9723225030084236,
+      "recall": 0.9793939393939394,
+      "f1": 0.9758454106280193,
+      "false_positive_rate": 0.027878787878787878,
+      "auc_roc": 0.9944778696051423,
+      "accuracy": 0.9757575757575757,
+      "confusion_matrix": {
+        "labels": [
+          "legitimate",
+          "phishing"
+        ],
+        "matrix": [
+          [
+            802,
+            23
+          ],
+          [
+            17,
+            808
+          ]
+        ],
+        "tn": 802,
+        "fp": 23,
+        "fn": 17,
+        "tp": 808
+      },
+      "notes": []
+    },
+    "nazario": {
+      "n": 225,
+      "n_phishing": 225,
+      "n_legitimate": 0,
+      "precision": 1.0,
+      "recall": 0.9955555555555555,
+      "f1": 0.9977728285077951,
+      "false_positive_rate": null,
+      "auc_roc": null,
+      "accuracy": 0.9955555555555555,
+      "confusion_matrix": {
+        "labels": [
+          "legitimate",
+          "phishing"
+        ],
+        "matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            224
+          ]
+        ],
+        "tn": 0,
+        "fp": 0,
+        "fn": 1,
+        "tp": 224
+      },
+      "notes": [
+        "no legitimate rows: FPR/specificity undefined; AUC-ROC undefined"
+      ]
+    },
+    "spamassassin": {
+      "n": 225,
+      "n_phishing": 0,
+      "n_legitimate": 225,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_positive_rate": 0.03111111111111111,
+      "auc_roc": null,
+      "accuracy": 0.9688888888888889,
+      "confusion_matrix": {
+        "labels": [
+          "legitimate",
+          "phishing"
+        ],
+        "matrix": [
+          [
+            218,
+            7
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "tn": 218,
+        "fp": 7,
+        "fn": 0,
+        "tp": 0
+      },
+      "notes": [
+        "no phishing rows: precision/recall/F1/AUC-ROC undefined"
+      ]
+    },
+    "synthetic_healthcare": {
+      "n": 150,
+      "n_phishing": 75,
+      "n_legitimate": 75,
+      "precision": 0.8641975308641975,
+      "recall": 0.9333333333333333,
+      "f1": 0.8974358974358975,
+      "false_positive_rate": 0.14666666666666667,
+      "auc_roc": 0.9619555555555556,
+      "accuracy": 0.8933333333333333,
+      "confusion_matrix": {
+        "labels": [
+          "legitimate",
+          "phishing"
+        ],
+        "matrix": [
+          [
+            64,
+            11
+          ],
+          [
+            5,
+            70
+          ]
+        ],
+        "tn": 64,
+        "fp": 11,
+        "fn": 5,
+        "tp": 70
+      },
+      "notes": []
+    }
+  },
+  "top_20_features": [
+    {
+      "rank": 1,
+      "feature": "tfidf:your",
+      "index": 4953,
+      "importance": 0.02524696797262308
+    },
+    {
+      "rank": 2,
+      "feature": "exclamation_count",
+      "index": 5004,
+      "importance": 0.016987665594600375
+    },
+    {
+      "rank": 3,
+      "feature": "tfidf:enron",
+      "index": 1399,
+      "importance": 0.01524162386862746
+    },
+    {
+      "rank": 4,
+      "feature": "tfidf:2002",
+      "index": 62,
+      "importance": 0.013406025423664647
+    },
+    {
+      "rank": 5,
+      "feature": "tfidf:our",
+      "index": 2987,
+      "importance": 0.011439821727176325
+    },
+    {
+      "rank": 6,
+      "feature": "tfidf:you",
+      "index": 4908,
+      "importance": 0.010977939900508498
+    },
+    {
+      "rank": 7,
+      "feature": "tfidf:wrote",
+      "index": 4880,
+      "importance": 0.010266895524114606
+    },
+    {
+      "rank": 8,
+      "feature": "tfidf:here",
+      "index": 1870,
+      "importance": 0.01023095241638467
+    },
+    {
+      "rank": 9,
+      "feature": "tfidf:the",
+      "index": 4033,
+      "importance": 0.010089754348500686
+    },
+    {
+      "rank": 10,
+      "feature": "tfidf:click here",
+      "index": 903,
+      "importance": 0.009175349475401169
+    },
+    {
+      "rank": 11,
+      "feature": "avg_domain_entropy",
+      "index": 5009,
+      "importance": 0.007987543250330197
+    },
+    {
+      "rank": 12,
+      "feature": "tfidf:click",
+      "index": 902,
+      "importance": 0.007492261450071472
+    },
+    {
+      "rank": 13,
+      "feature": "tfidf:date",
+      "index": 1135,
+      "importance": 0.006749160496301989
+    },
+    {
+      "rank": 14,
+      "feature": "tfidf:university",
+      "index": 4526,
+      "importance": 0.006690403394910425
+    },
+    {
+      "rank": 15,
+      "feature": "tfidf:account",
+      "index": 191,
+      "importance": 0.006526386402001323
+    },
+    {
+      "rank": 16,
+      "feature": "avg_word_length",
+      "index": 5003,
+      "importance": 0.0064994788239544484
+    },
+    {
+      "rank": 17,
+      "feature": "tfidf:that",
+      "index": 4008,
+      "importance": 0.0061893746246245475
+    },
+    {
+      "rank": 18,
+      "feature": "tfidf:pm",
+      "index": 3165,
+      "importance": 0.0060437287027230125
+    },
+    {
+      "rank": 19,
+      "feature": "word_count",
+      "index": 5002,
+      "importance": 0.005957387684260874
+    },
+    {
+      "rank": 20,
+      "feature": "tfidf:url",
+      "index": 4556,
+      "importance": 0.005898755033303462
+    }
+  ],
+  "dense_feature_importance": {
+    "sum_over_12_dense_features": 0.046099397818067454,
+    "per_feature": {
+      "urgency_score": 0.0033439124294536693,
+      "healthcare_term_count": 0.00040000217610676664,
+      "word_count": 0.005957387684260874,
+      "avg_word_length": 0.0064994788239544484,
+      "exclamation_count": 0.016987665594600375,
+      "capitalized_word_count": 0.0010126705750147062,
+      "url_count": 0.0038422902601372606,
+      "has_ip_literal": 2.960844872260119e-05,
+      "has_url_shortener": 6.095326553491933e-06,
+      "avg_domain_entropy": 0.007987543250330197,
+      "suspicious_tld": 1.0745213023230728e-05,
+      "has_at_symbol": 2.1998035909833106e-05
+    }
+  }
+}

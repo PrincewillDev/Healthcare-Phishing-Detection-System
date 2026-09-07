@@ -1,0 +1,773 @@
+{
+  "phase": "5",
+  "description": "Stacking ensemble (RQ1): RF + XGBoost + LightGBM base probabilities into a Logistic Regression meta-classifier trained on val, evaluated on test.",
+  "created_utc": "2026-09-04T23:15:23.842853+00:00",
+  "positive_class": "phishing",
+  "test_set_touched": true,
+  "test_set_touched_note": "First and only step in this project permitted to use test_final.npz / test_labels.csv, and only for this final evaluation.",
+  "base_models_retrained": false,
+  "meta_classifier": {
+    "type": "LogisticRegression",
+    "params": {
+      "random_state": 42
+    },
+    "trained_on": "val base-model probabilities (val never used in base model training)",
+    "input_features": [
+      "random_forest",
+      "xgboost",
+      "lightgbm"
+    ],
+    "coefficients": {
+      "random_forest": 4.8179137560732,
+      "xgboost": 3.2780692196935686,
+      "lightgbm": 3.2819616517614696
+    },
+    "intercept": -5.89973136489461
+  },
+  "data": {
+    "val_rows": 2250,
+    "test_rows": 2250
+  },
+  "results_by_model": {
+    "random_forest": {
+      "validation_overall": null,
+      "test_overall": {
+        "n": 2250,
+        "n_phishing": 1125,
+        "n_legitimate": 1125,
+        "precision": 0.957092819614711,
+        "recall": 0.9715555555555555,
+        "f1": 0.9642699602999559,
+        "false_positive_rate": 0.043555555555555556,
+        "auc_roc": 0.9944813827160495,
+        "accuracy": 0.964,
+        "confusion_matrix": {
+          "labels": [
+            "legitimate",
+            "phishing"
+          ],
+          "matrix": [
+            [
+              1076,
+              49
+            ],
+            [
+              32,
+              1093
+            ]
+          ],
+          "tn": 1076,
+          "fp": 49,
+          "fn": 32,
+          "tp": 1093
+        },
+        "notes": []
+      },
+      "test_by_source_dataset": {
+        "kaggle_chakraborty": {
+          "n": 1650,
+          "n_phishing": 825,
+          "n_legitimate": 825,
+          "precision": 0.969770253929867,
+          "recall": 0.9721212121212122,
+          "f1": 0.9709443099273608,
+          "false_positive_rate": 0.030303030303030304,
+          "auc_roc": 0.9957010101010101,
+          "accuracy": 0.9709090909090909,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                800,
+                25
+              ],
+              [
+                23,
+                802
+              ]
+            ],
+            "tn": 800,
+            "fp": 25,
+            "fn": 23,
+            "tp": 802
+          },
+          "notes": []
+        },
+        "nazario": {
+          "n": 225,
+          "n_phishing": 225,
+          "n_legitimate": 0,
+          "precision": 1.0,
+          "recall": 0.9866666666666667,
+          "f1": 0.9932885906040269,
+          "false_positive_rate": null,
+          "auc_roc": null,
+          "accuracy": 0.9866666666666667,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                222
+              ]
+            ],
+            "tn": 0,
+            "fp": 0,
+            "fn": 3,
+            "tp": 222
+          },
+          "notes": [
+            "no legitimate rows: FPR/specificity undefined; AUC-ROC undefined"
+          ]
+        },
+        "spamassassin": {
+          "n": 225,
+          "n_phishing": 0,
+          "n_legitimate": 225,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.02666666666666667,
+          "auc_roc": null,
+          "accuracy": 0.9733333333333334,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                219,
+                6
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "tn": 219,
+            "fp": 6,
+            "fn": 0,
+            "tp": 0
+          },
+          "notes": [
+            "no phishing rows: precision/recall/F1/AUC-ROC undefined"
+          ]
+        },
+        "synthetic_healthcare": {
+          "n": 150,
+          "n_phishing": 75,
+          "n_legitimate": 75,
+          "precision": 0.7931034482758621,
+          "recall": 0.92,
+          "f1": 0.8518518518518519,
+          "false_positive_rate": 0.24,
+          "auc_roc": 0.9395555555555556,
+          "accuracy": 0.84,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                57,
+                18
+              ],
+              [
+                6,
+                69
+              ]
+            ],
+            "tn": 57,
+            "fp": 18,
+            "fn": 6,
+            "tp": 69
+          },
+          "notes": []
+        }
+      }
+    },
+    "xgboost": {
+      "validation_overall": null,
+      "test_overall": {
+        "n": 2250,
+        "n_phishing": 1125,
+        "n_legitimate": 1125,
+        "precision": 0.9597197898423818,
+        "recall": 0.9742222222222222,
+        "f1": 0.9669166299073666,
+        "false_positive_rate": 0.04088888888888889,
+        "auc_roc": 0.9943687901234568,
+        "accuracy": 0.9666666666666667,
+        "confusion_matrix": {
+          "labels": [
+            "legitimate",
+            "phishing"
+          ],
+          "matrix": [
+            [
+              1079,
+              46
+            ],
+            [
+              29,
+              1096
+            ]
+          ],
+          "tn": 1079,
+          "fp": 46,
+          "fn": 29,
+          "tp": 1096
+        },
+        "notes": []
+      },
+      "test_by_source_dataset": {
+        "kaggle_chakraborty": {
+          "n": 1650,
+          "n_phishing": 825,
+          "n_legitimate": 825,
+          "precision": 0.9688249400479616,
+          "recall": 0.9793939393939394,
+          "f1": 0.974080771549126,
+          "false_positive_rate": 0.03151515151515152,
+          "auc_roc": 0.9952396694214877,
+          "accuracy": 0.973939393939394,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                799,
+                26
+              ],
+              [
+                17,
+                808
+              ]
+            ],
+            "tn": 799,
+            "fp": 26,
+            "fn": 17,
+            "tp": 808
+          },
+          "notes": []
+        },
+        "nazario": {
+          "n": 225,
+          "n_phishing": 225,
+          "n_legitimate": 0,
+          "precision": 1.0,
+          "recall": 0.9644444444444444,
+          "f1": 0.9819004524886877,
+          "false_positive_rate": null,
+          "auc_roc": null,
+          "accuracy": 0.9644444444444444,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                8,
+                217
+              ]
+            ],
+            "tn": 0,
+            "fp": 0,
+            "fn": 8,
+            "tp": 217
+          },
+          "notes": [
+            "no legitimate rows: FPR/specificity undefined; AUC-ROC undefined"
+          ]
+        },
+        "spamassassin": {
+          "n": 225,
+          "n_phishing": 0,
+          "n_legitimate": 225,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.03111111111111111,
+          "auc_roc": null,
+          "accuracy": 0.9688888888888889,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                218,
+                7
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "tn": 218,
+            "fp": 7,
+            "fn": 0,
+            "tp": 0
+          },
+          "notes": [
+            "no phishing rows: precision/recall/F1/AUC-ROC undefined"
+          ]
+        },
+        "synthetic_healthcare": {
+          "n": 150,
+          "n_phishing": 75,
+          "n_legitimate": 75,
+          "precision": 0.8452380952380952,
+          "recall": 0.9466666666666667,
+          "f1": 0.8930817610062893,
+          "false_positive_rate": 0.17333333333333334,
+          "auc_roc": 0.9722666666666667,
+          "accuracy": 0.8866666666666667,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                62,
+                13
+              ],
+              [
+                4,
+                71
+              ]
+            ],
+            "tn": 62,
+            "fp": 13,
+            "fn": 4,
+            "tp": 71
+          },
+          "notes": []
+        }
+      }
+    },
+    "lightgbm": {
+      "validation_overall": null,
+      "test_overall": {
+        "n": 2250,
+        "n_phishing": 1125,
+        "n_legitimate": 1125,
+        "precision": 0.9655172413793104,
+        "recall": 0.9706666666666667,
+        "f1": 0.9680851063829787,
+        "false_positive_rate": 0.034666666666666665,
+        "auc_roc": 0.9947377777777778,
+        "accuracy": 0.968,
+        "confusion_matrix": {
+          "labels": [
+            "legitimate",
+            "phishing"
+          ],
+          "matrix": [
+            [
+              1086,
+              39
+            ],
+            [
+              33,
+              1092
+            ]
+          ],
+          "tn": 1086,
+          "fp": 39,
+          "fn": 33,
+          "tp": 1092
+        },
+        "notes": []
+      },
+      "test_by_source_dataset": {
+        "kaggle_chakraborty": {
+          "n": 1650,
+          "n_phishing": 825,
+          "n_legitimate": 825,
+          "precision": 0.9733333333333334,
+          "recall": 0.9733333333333334,
+          "f1": 0.9733333333333334,
+          "false_positive_rate": 0.02666666666666667,
+          "auc_roc": 0.995480624426079,
+          "accuracy": 0.9733333333333334,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                803,
+                22
+              ],
+              [
+                22,
+                803
+              ]
+            ],
+            "tn": 803,
+            "fp": 22,
+            "fn": 22,
+            "tp": 803
+          },
+          "notes": []
+        },
+        "nazario": {
+          "n": 225,
+          "n_phishing": 225,
+          "n_legitimate": 0,
+          "precision": 1.0,
+          "recall": 0.9688888888888889,
+          "f1": 0.9841986455981941,
+          "false_positive_rate": null,
+          "auc_roc": null,
+          "accuracy": 0.9688888888888889,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                218
+              ]
+            ],
+            "tn": 0,
+            "fp": 0,
+            "fn": 7,
+            "tp": 218
+          },
+          "notes": [
+            "no legitimate rows: FPR/specificity undefined; AUC-ROC undefined"
+          ]
+        },
+        "spamassassin": {
+          "n": 225,
+          "n_phishing": 0,
+          "n_legitimate": 225,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.03111111111111111,
+          "auc_roc": null,
+          "accuracy": 0.9688888888888889,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                218,
+                7
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "tn": 218,
+            "fp": 7,
+            "fn": 0,
+            "tp": 0
+          },
+          "notes": [
+            "no phishing rows: precision/recall/F1/AUC-ROC undefined"
+          ]
+        },
+        "synthetic_healthcare": {
+          "n": 150,
+          "n_phishing": 75,
+          "n_legitimate": 75,
+          "precision": 0.8765432098765432,
+          "recall": 0.9466666666666667,
+          "f1": 0.9102564102564102,
+          "false_positive_rate": 0.13333333333333333,
+          "auc_roc": 0.9743999999999999,
+          "accuracy": 0.9066666666666666,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                65,
+                10
+              ],
+              [
+                4,
+                71
+              ]
+            ],
+            "tn": 65,
+            "fp": 10,
+            "fn": 4,
+            "tp": 71
+          },
+          "notes": []
+        }
+      }
+    },
+    "stacked_ensemble": {
+      "test_overall": {
+        "n": 2250,
+        "n_phishing": 1125,
+        "n_legitimate": 1125,
+        "precision": 0.9689716312056738,
+        "recall": 0.9715555555555555,
+        "f1": 0.9702618730581447,
+        "false_positive_rate": 0.03111111111111111,
+        "auc_roc": 0.9955176296296295,
+        "accuracy": 0.9702222222222222,
+        "confusion_matrix": {
+          "labels": [
+            "legitimate",
+            "phishing"
+          ],
+          "matrix": [
+            [
+              1090,
+              35
+            ],
+            [
+              32,
+              1093
+            ]
+          ],
+          "tn": 1090,
+          "fp": 35,
+          "fn": 32,
+          "tp": 1093
+        },
+        "notes": []
+      },
+      "test_by_source_dataset": {
+        "kaggle_chakraborty": {
+          "n": 1650,
+          "n_phishing": 825,
+          "n_legitimate": 825,
+          "precision": 0.9757281553398058,
+          "recall": 0.9745454545454545,
+          "f1": 0.9751364463311097,
+          "false_positive_rate": 0.024242424242424242,
+          "auc_roc": 0.9962167125803489,
+          "accuracy": 0.9751515151515151,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                805,
+                20
+              ],
+              [
+                21,
+                804
+              ]
+            ],
+            "tn": 805,
+            "fp": 20,
+            "fn": 21,
+            "tp": 804
+          },
+          "notes": []
+        },
+        "nazario": {
+          "n": 225,
+          "n_phishing": 225,
+          "n_legitimate": 0,
+          "precision": 1.0,
+          "recall": 0.9733333333333334,
+          "f1": 0.9864864864864865,
+          "false_positive_rate": null,
+          "auc_roc": null,
+          "accuracy": 0.9733333333333334,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                219
+              ]
+            ],
+            "tn": 0,
+            "fp": 0,
+            "fn": 6,
+            "tp": 219
+          },
+          "notes": [
+            "no legitimate rows: FPR/specificity undefined; AUC-ROC undefined"
+          ]
+        },
+        "spamassassin": {
+          "n": 225,
+          "n_phishing": 0,
+          "n_legitimate": 225,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "false_positive_rate": 0.02666666666666667,
+          "auc_roc": null,
+          "accuracy": 0.9733333333333334,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                219,
+                6
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "tn": 219,
+            "fp": 6,
+            "fn": 0,
+            "tp": 0
+          },
+          "notes": [
+            "no phishing rows: precision/recall/F1/AUC-ROC undefined"
+          ]
+        },
+        "synthetic_healthcare": {
+          "n": 150,
+          "n_phishing": 75,
+          "n_legitimate": 75,
+          "precision": 0.8860759493670886,
+          "recall": 0.9333333333333333,
+          "f1": 0.9090909090909091,
+          "false_positive_rate": 0.12,
+          "auc_roc": 0.9710222222222222,
+          "accuracy": 0.9066666666666666,
+          "confusion_matrix": {
+            "labels": [
+              "legitimate",
+              "phishing"
+            ],
+            "matrix": [
+              [
+                66,
+                9
+              ],
+              [
+                5,
+                70
+              ]
+            ],
+            "tn": 66,
+            "fp": 9,
+            "fn": 5,
+            "tp": 70
+          },
+          "notes": []
+        }
+      }
+    }
+  },
+  "synthetic_healthcare_summary": {
+    "random_forest": {
+      "fpr": 0.24,
+      "recall": 0.92
+    },
+    "xgboost": {
+      "fpr": 0.17333333333333334,
+      "recall": 0.9466666666666667
+    },
+    "lightgbm": {
+      "fpr": 0.13333333333333333,
+      "recall": 0.9466666666666667
+    },
+    "stacked_ensemble": {
+      "fpr": 0.12,
+      "recall": 0.9333333333333333
+    }
+  },
+  "headline_comparison_test_overall": {
+    "random_forest": {
+      "precision": 0.957092819614711,
+      "recall": 0.9715555555555555,
+      "f1": 0.9642699602999559,
+      "false_positive_rate": 0.043555555555555556,
+      "auc_roc": 0.9944813827160495
+    },
+    "xgboost": {
+      "precision": 0.9597197898423818,
+      "recall": 0.9742222222222222,
+      "f1": 0.9669166299073666,
+      "false_positive_rate": 0.04088888888888889,
+      "auc_roc": 0.9943687901234568
+    },
+    "lightgbm": {
+      "precision": 0.9655172413793104,
+      "recall": 0.9706666666666667,
+      "f1": 0.9680851063829787,
+      "false_positive_rate": 0.034666666666666665,
+      "auc_roc": 0.9947377777777778
+    },
+    "stacked_ensemble": {
+      "precision": 0.9689716312056738,
+      "recall": 0.9715555555555555,
+      "f1": 0.9702618730581447,
+      "false_positive_rate": 0.03111111111111111,
+      "auc_roc": 0.9955176296296295
+    }
+  },
+  "rq1_answer": {
+    "best_individual_baseline_by_f1": "lightgbm",
+    "best_individual_baseline_f1": 0.9680851063829787,
+    "ensemble_f1": 0.9702618730581447,
+    "f1_delta_ensemble_minus_best_baseline": 0.0021767666751659753,
+    "ensemble_outperforms_best_baseline_on_f1": true,
+    "best_individual_baseline_by_fpr": "lightgbm",
+    "best_individual_baseline_fpr": 0.034666666666666665,
+    "ensemble_fpr": 0.03111111111111111,
+    "fpr_delta_ensemble_minus_best_baseline": -0.003555555555555555,
+    "ensemble_improves_fpr_vs_best_baseline": true,
+    "best_individual_baseline_by_auc": "lightgbm",
+    "best_individual_baseline_auc": 0.9947377777777778,
+    "ensemble_auc": 0.9955176296296295,
+    "auc_delta_ensemble_minus_best_baseline": 0.0007798518518516984,
+    "ensemble_improves_auc_vs_best_baseline": true
+  }
+}
