@@ -1,0 +1,16 @@
+Subject: URGENT: Your EHR Access Will Be Suspended in 24 Hours
+From: it-security@epiccare-support-verify.com
+To: staff@hospital.example.com
+X-Sample-Type: synthetic-healthcare-phishing
+X-Sample-Note: Synthesized sample; not real healthcare breach data
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Staff Member, our security system has detected unusual login activity on=
+ your EpicCare account from an unrecognized device. To prevent automatic susp=
+ension of your access, you must verify your credentials immediately by clicki=
+ng the link below. Failure to verify within 24 hours will result in loss of a=
+ccess to patient records and require IT ticket submission for reinstatement. =
+Verify Now: hxxp://epiccare-verify-portal.net/auth Thank you, EHR Security Te=
+am
