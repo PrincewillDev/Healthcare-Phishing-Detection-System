@@ -1,2 +1,7 @@
 [phases.setup]
 aptPkgs = ["libgomp1"]
+nixPkgs = ["gcc-unwrapped"]
+# Fallback diagnostic only, not a primary fix: if libgomp is still missing
+# after the two package installs above, this prints where (if anywhere) a
+# libgomp file actually landed in the build, to guide a real fix.
+cmds = ["find / -name 'libgomp*' 2>/dev/null || true"]
