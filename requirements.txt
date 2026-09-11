@@ -1,7 +1,7 @@
 pandas
-scikit-learn
-xgboost
-lightgbm
+scikit-learn==1.9.0
+xgboost==3.2.0
+lightgbm==4.7.0
 nltk
 beautifulsoup4
 tldextract
