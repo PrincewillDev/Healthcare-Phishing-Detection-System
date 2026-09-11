@@ -229,6 +229,16 @@ src/models/artifacts/*
 *.joblib
 *.pkl
 
+# Deployment: these six fitted artifacts are required at API startup and are
+# allowed through despite the blanket *.pkl exclusion above.
+!src/models/artifacts/random_forest.pkl
+!src/models/artifacts/xgboost.pkl
+!src/models/artifacts/lightgbm.pkl
+!src/models/artifacts/stacking_meta.pkl
+!src/models/artifacts/tfidf_vectorizer.pkl
+!src/models/artifacts/feature_scaler.pkl
+!src/models/artifacts/shap_background_sample.npz
+
 # Credentials (defensive -- kaggle.json normally lives outside the repo in
 # ~/.kaggle/, but ignore it here too in case a setup places it in-tree)
 kaggle.json

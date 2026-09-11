@@ -77,11 +77,10 @@ DEFAULT_THRESHOLD = 0.67
 TOP_N_EXPLANATION_FEATURES = 10
 
 # Background sample for RandomForest's SHAP explainer (see build_shap_explainers
-# for why RF needs one and XGBoost/LightGBM don't). Drawn from train, never val
-# or test, and only ever read -- no retraining happens here.
-TRAIN_FEATURES_PATH = ROOT / "data" / "processed" / "features" / "train_final.npz"
-SHAP_BACKGROUND_SIZE = 20
-SHAP_BACKGROUND_RANDOM_STATE = 42
+# for why RF needs one and XGBoost/LightGBM don't). Precomputed once from train
+# (20 rows, random_state=42, see src/models/artifacts/shap_background_sample.npz)
+# so the API never needs the full train_final.npz at startup.
+SHAP_BACKGROUND_PATH = ARTIFACTS_DIR / "shap_background_sample.npz"
 
 artifacts: dict = {}
 
@@ -123,10 +122,7 @@ def build_shap_explainers(loaded: dict) -> dict:
     keeps this under ~150ms) since it is just a reference point for the
     interventional algorithm, not training data.
     """
-    X_train = sparse.load_npz(TRAIN_FEATURES_PATH).tocsr()
-    rng = np.random.RandomState(SHAP_BACKGROUND_RANDOM_STATE)
-    bg_idx = rng.choice(X_train.shape[0], size=SHAP_BACKGROUND_SIZE, replace=False)
-    background = X_train[bg_idx].toarray()
+    background = np.load(SHAP_BACKGROUND_PATH)["background"]
 
     explainer_rf = shap.TreeExplainer(
         loaded["random_forest"],
